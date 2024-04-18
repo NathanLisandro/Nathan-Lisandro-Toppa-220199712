@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <header id="header">
+        <h1>TODO</h1>
+    </header>
+    <main id="mainPart">
+        <form action="">
+            <div class="input-form">
+                <input type="text" name="" placeholder="Digite algo" id="adicionarTarefaInput">
+            </div>
+            <div class="botao-enviar">
+                <button type="button" id="botao"
+                    onclick="adicionarTarefa(document.getElementById('adicionarTarefaInput').value)">Adicionar
+                    Tarefa</button>
+            </div>
+        </form>
+
+    </main>
+    <section>
+        <div id="tarefas">
+            <ul id="listaTarefas">
+            </ul>
+        </div>
+    </section>
+    <footer>
+
+    </footer>
+
+</body>
+<script>
+    function adicionarTarefa(tarefa) {
+        let itensDoStorage = JSON.parse(localStorage.getItem('tarefas')) || [];
+        itensDoStorage.push(tarefa);
+        localStorage.setItem('tarefas', JSON.stringify(itensDoStorage));
+        adicionarNovoParagrafo(itensDoStorage)
+    }
+    function adicionarNovoParagrafo(array) {
+        console.log('teste')
+        for (let i = 0; i < array.length - 1; i++) {
+            console.log('a')
+            let getDiv = document.getElementById('listaTarefas');
+            let paragrafo = document.createElement('li');
+            paragrafo.textContent = array[i]
+            console.log(paragrafo)
+            getDiv.appendChild(paragrafo)
+        }
+    }
+
+</script>
+
+</html>
